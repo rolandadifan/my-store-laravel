@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Models;
+
+use App\Models\Product;
+use App\User;
+use Illuminate\Database\Eloquent\Model;
+
+class Cart extends Model
+{
+    protected $fillable = [
+        'products_id', 'users_id'
+    ];
+
+    public function product()
+    {
+        return $this->hasOne(Product::class, 'id', 'products_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'users_id', 'id');
+    }
+}
